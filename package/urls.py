@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path
 from . import views
 
 app_name = 'package'
@@ -10,4 +10,5 @@ urlpatterns = [
     path('<int:package_id>/', views.detail, name='detail'),
     path('login/', views.login_user, name='login'),
     path('register/', views.UserFormView.as_view(), name='register'),
+    path('login_user/', views.login_user, name='login_user'),
 ]

@@ -1,0 +1,14 @@
+{% extends 'package/base.html' %}
+{% load staticfiles %}
+{% block title %}Detail{% endblock %}
+{% block body %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'package/style.css' %}"/>
+    < img src='{{ package.company_logo }}'>
+    <h1>{{ package_type }}</h1>
+    <h3>{{ package.tracking_num }}</h3>
+    <ul>
+
+        <li></li>
+    </ul>
+{% endblock %}

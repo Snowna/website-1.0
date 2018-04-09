@@ -1,0 +1,15 @@
+{% extends 'package/base.html' %}
+{% load staticfiles %}
+{% block body %}
+
+    {% if all_packages %}
+        <h3>Here are all my packages</h3>
+    <ul>
+        {% for package in all_packages %}
+        <li><a href="{% url 'package:detail' package.id %}"> {{ package.package_type }} </a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <h3>You don't have package</h3>
+    {% endif %}
+{% endblock %}

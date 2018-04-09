@@ -1,15 +1,49 @@
 {% extends 'package/base.html' %}
-{% load staticfiles %}
-{% block body %}
+{% block albums_active %}active{% endblock %}
 
-    {% if all_packages %}
-        <h3>Here are all my packages</h3>
-    <ul>
-        {% for package in all_packages %}
-        <li><a href="{% url 'package:detail' package.id %}"> {{ package.package_type }} </a></li>
-        {% endfor %}
-    </ul>
-    {% else %}
-        <h3>You don't have package</h3>
-    {% endif %}
+{% block body %}
+<div class="albums-container container-fluid">
+
+    <!-- Packages -->
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>{{ user.username }}'s Package</h3>
+        </div>
+        {% if packages %}
+            {% for package in packages %}
+                <div class="col-sm-4 col-lg-2">
+                    <div class="thumbnail">
+                        <a href="{% url 'package:detail' package.id %}">
+                            <img src="{{ package.company_logo.url }}" class="img-responsive">
+                        </a>
+                        <div class="caption">
+                            <h2>{{ package.package_trcaking_num }}</h2>
+                            <h4>{{ package.type }}</h4>
+
+                            <!-- View Details -->
+                            <a href="{% url 'package:detail' package.id %}" class="btn btn-primary btn-sm" role="button">View Details</a>
+
+
+
+                        </div>
+                    </div>
+                </div>
+                {% cycle '' '' '' '' '' '<div class="clearfix visible-lg"></div>' %}
+            {% endfor %}
+        {% else %}
+            <div class="col-sm-12">
+                <br>
+                <a href="{% url 'package:create_package' %}">
+                    <button type="button" class="btn btn-success">
+                        <span class="glyphicon glyphicon-plus"></span>&nbsp; Add an Package
+                    </button>
+                </a>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- If user searches and there are songs -->
+\
+
+</div>
 {% endblock %}

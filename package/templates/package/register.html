@@ -1,4 +1,6 @@
+
 {% extends 'package/base_visitor.html' %}
+
 {% block title %}Register{% endblock %}
 {% block register_active %}active{% endblock %}
 
@@ -24,7 +26,7 @@
                     </form>
                 </div>
                 <div class="panel-footer">
-                    Already have an account? <a href=" {% url 'package:login' %}">Click here</a> to log in.
+                    Already have an account? <a href="{% url 'package:login' %} ">Click here</a> to log in.
                 </div>
             </div>
         </div>

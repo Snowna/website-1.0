@@ -126,3 +126,10 @@ def create_package(request):
             "form": form,
         }
         return render(request, 'package/create_package.html', context)
+
+
+def delete_package(request, package_id):
+    package = Package.objects.get(pk=package_id)
+    package.delete()
+    packages = Package.objects.filter(user=request.user)
+    return render(request, 'package/index.html', {'packages': packages})

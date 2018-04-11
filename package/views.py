@@ -109,7 +109,7 @@ def create_package(request):
         if form.is_valid():
             package = form.save(commit=False)
             package.user = request.user
-            package.album_logo = request.FILES['album_logo']
+            package.company_logo = request.FILES['company_logo']
             file_type = package.company_logo.url.split('.')[-1]
             file_type = file_type.lower()
             if file_type not in IMAGE_FILE_TYPES:

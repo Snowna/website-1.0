@@ -102,7 +102,7 @@ def register(request):
 
 
 def create_package(request):
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         return render(request, 'package/login.html')
     else:
         form = PackageForm(request.POST or None, request.FILES or None)
@@ -119,7 +119,7 @@ def create_package(request):
                     'error_message': 'Image file must be PNG, JPG, or JPEG',
                 }
                 return render(request, 'package/create_package.html', context)
-            album.save()
+            package.save()
             return render(request, 'package/detail.html', {'package': package})
         context = {
             "form": form,

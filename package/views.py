@@ -1,9 +1,10 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render, get_object_or_404,redirect
 from .models import Package
-from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import View
 from .forms import UserForm, PackageForm
+from django.db.models import Q
+from django.http import JsonResponse
 
 IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg']
 

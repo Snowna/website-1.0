@@ -6,13 +6,25 @@ from .forms import UserForm, PackageForm
 from django.db.models import Q
 from django.http import JsonResponse
 
-IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg']
-
 
 def index(request):
     # connect to the database
-    all_packages = Package.objects.all()
-    return render(request, 'package/index.html', {'all_packages': all_packages})
+    if not request.user.is_authenticated():
+        return render(request, 'package/login.html')
+    else:
+        packages = Package.objects.filter(user=request.user)
+        query = request.GET.get("q")
+        if query:
+            packages = packages.filter(
+                Q(package_type__contains__icontains=query) |
+                Q(package_company__icontains=query)
+            ).distinct()
+
+            return render(request, 'package/index.html', {
+                'packages': packages,
+            })
+        else:
+            return render(request, 'package/index.html', {'packages': packages})
 
 
 def detail(request, package_id):
@@ -106,20 +118,10 @@ def create_package(request):
     if not request.user.is_authenticated:
         return render(request, 'package/login.html')
     else:
-        form = PackageForm(request.POST or None, request.FILES or None)
+        form = PackageForm(request.POST or None)
         if form.is_valid():
             package = form.save(commit=False)
             package.user = request.user
-            package.company_logo = request.FILES['company_logo']
-            file_type = package.company_logo.url.split('.')[-1]
-            file_type = file_type.lower()
-            if file_type not in IMAGE_FILE_TYPES:
-                context = {
-                    'package': package,
-                    'form': form,
-                    'error_message': 'Image file must be PNG, JPG, or JPEG',
-                }
-                return render(request, 'package/create_package.html', context)
             package.save()
             return render(request, 'package/detail.html', {'package': package})
         context = {

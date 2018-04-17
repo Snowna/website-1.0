@@ -1,13 +1,32 @@
 {% extends 'package/base.html' %}
-{% block title %}Detail{% endblock %}
+{% block title %}{{ album }}{% endblock %}
+{% block albums_active %}active{% endblock %}
+
 {% block body %}
+<div class="container-fluid songs-container">
 
-    <link rel="stylesheet" type="text/css" href="{% static 'package/style.css' %}"/>
-    < img src='{{ package.company_logo }}'>
-    <h1>{{ package_type }}</h1>
-    <h3>{{ package.tracking_num }}</h3>
-    <ul>
+    <div class="row">
 
-        <li></li>
-    </ul>
+        <!-- Left package Info -->
+        <div class="col-sm-4 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="{% url 'package:detail' package.id %}">
+                        {% if package.tracking_num %}
+
+                            {% else %}
+                                <h3>No image to display</h3>
+                            {% endif %}
+                    </a>
+                    <h1>{{ package.tracking_num }} <small>{{ package.package_type }}</small></h1>
+                    <h2>{{ package.package_company }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <!-- Right Song Info -->
+
+
 {% endblock %}

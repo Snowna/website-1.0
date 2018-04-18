@@ -9,7 +9,7 @@ from django.http import JsonResponse
 
 def index(request):
     # connect to the database
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         return render(request, 'package/login.html')
     else:
         packages = Package.objects.filter(user=request.user)

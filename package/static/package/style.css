@@ -1,6 +1,9 @@
 body{
     background: white url("images/background.jpg");
 }
+.footer{
+    background: black;
+}
 ul.errorlist {
     padding-left: 0;
 }
@@ -24,4 +27,18 @@ ul.errorlist > li {
 
 .glyphicon-star.active {
     color: #FDB230;
+}
+
+.hide-bullets {
+    list-style:none;
+    margin-left: -40px;
+    margin-top:20px;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.carousel-inner>.item>img, .carousel-inner>.item>a>img {
+    width: 100%;
 }

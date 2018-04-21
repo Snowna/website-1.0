@@ -3,7 +3,9 @@ body{
 }
 .footer{
     background: black;
+    position: absolute;
 }
+
 ul.errorlist {
     padding-left: 0;
 }

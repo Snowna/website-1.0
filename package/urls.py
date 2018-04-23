@@ -7,7 +7,7 @@ urlpatterns = [
     # /package/---main page for all the users
     path('', views.index, name='index_v'),
     # /package/index/
-    path('index/', views.index, name='index'),
+    path('index/', views.index_v, name='index'),
     path('<int:package_id>/', views.detail, name='detail'),
     path('login/', views.login_user, name='login'),
     path('register/', views.register, name='register'),

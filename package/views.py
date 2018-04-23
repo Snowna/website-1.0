@@ -7,10 +7,10 @@ from django.db.models import Q
 from django.http import JsonResponse
 
 
-def index(request):
+def index_v(request):
     # connect to the database
     if not request.user.is_authenticated:
-        return render(request, 'package/login.html')
+        return render(request, 'package/login_v.html')
     else:
         packages = Package.objects.filter(user=request.user)
         query = request.GET.get("q")
@@ -25,6 +25,26 @@ def index(request):
             })
         else:
             return render(request, 'package/index_v.html', {'packages': packages})
+
+
+def index(request):
+    # connect to the database
+    if not request.user.is_authenticated:
+        return render(request, 'package/login.html')
+    else:
+        packages = Package.objects.filter(user=request.user)
+        query = request.GET.get("q")
+        if query:
+            packages = packages.filter(
+                Q(package_type__contains__icontains=query) |
+                Q(package_company__icontains=query)
+            ).distinct()
+
+            return render(request, 'package/index.html', {
+                'packages': packages,
+            })
+        else:
+            return render(request, 'package/index.html', {'packages': packages})
 
 
 def detail(request, package_id):
@@ -77,7 +97,7 @@ def login_user(request):
             if user.is_active:
                 login(request, user)
                 packages = Package.objects.filter(user=request.user)
-                return render(request, 'package/index_v.html', {'packages': packages})
+                return render(request, 'package/index.html', {'packages': packages})
             else:
                 return render(request, 'package/login.html', {'error_message': 'Your account has been disabled'})
         else:
@@ -107,7 +127,7 @@ def register(request):
             if user.is_active:
                 login(request, user)
                 packages = Package.objects.filter(user=request.user)
-                return render(request, 'package/index_v.html', {'packages': packages})
+                return render(request, 'package/index.html', {'packages': packages})
     context = {
         "form": form,
     }
@@ -134,4 +154,4 @@ def delete_package(request, package_id):
     package = Package.objects.get(pk=package_id)
     package.delete()
     packages = Package.objects.filter(user=request.user)
-    return render(request, 'package/index_v.html', {'packages': packages})
+    return render(request, 'package/index.html', {'packages': packages})

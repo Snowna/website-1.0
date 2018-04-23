@@ -20,11 +20,11 @@ def index(request):
                 Q(package_company__icontains=query)
             ).distinct()
 
-            return render(request, 'package/index.html', {
+            return render(request, 'package/index_v.html', {
                 'packages': packages,
             })
         else:
-            return render(request, 'package/index.html', {'packages': packages})
+            return render(request, 'package/index_v.html', {'packages': packages})
 
 
 def detail(request, package_id):
@@ -77,7 +77,7 @@ def login_user(request):
             if user.is_active:
                 login(request, user)
                 packages = Package.objects.filter(user=request.user)
-                return render(request, 'package/index.html', {'packages': packages})
+                return render(request, 'package/index_v.html', {'packages': packages})
             else:
                 return render(request, 'package/login.html', {'error_message': 'Your account has been disabled'})
         else:
@@ -107,7 +107,7 @@ def register(request):
             if user.is_active:
                 login(request, user)
                 packages = Package.objects.filter(user=request.user)
-                return render(request, 'package/index.html', {'packages': packages})
+                return render(request, 'package/index_v.html', {'packages': packages})
     context = {
         "form": form,
     }
@@ -134,4 +134,4 @@ def delete_package(request, package_id):
     package = Package.objects.get(pk=package_id)
     package.delete()
     packages = Package.objects.filter(user=request.user)
-    return render(request, 'package/index.html', {'packages': packages})
+    return render(request, 'package/index_v.html', {'packages': packages})

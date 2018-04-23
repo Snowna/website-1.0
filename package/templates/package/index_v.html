@@ -1,0 +1,73 @@
+{% extends 'package/base_visitor.html' %}
+{% block albums_active %}active{% endblock %}
+{% block body %}
+<!-- Slider -->
+  <div id="myCarousel" class="carousel slide margin-t70" data-interval="false">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="item active">
+      <img src="https://www.mypalmbeachpost.com/rf/image_medium/Pub/p8/MyPalmBeachPost/2017/12/11/Images/newsEngin.20639716_885525238.jpg" style="width:100%" class="img-responsive">
+      <div class="container">
+        <div class="caraous-title">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <span>Mess Packgae Up ?</span>
+                    <h1>Mess Packgaes Up ? <br> Don't know how to clean up? </h1>
+                    <h3>We have perfect Organization</h3>
+                    <a class="btn btn-lg btn-primary site-btn" href="{% url 'package:register' %}">Join Us Now !</a>
+                </div>
+
+            </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <img src="https://mediabutton.com/wp-content/uploads/package-box.jpg" style="width:100%" class="img-responsive">
+      <div class="container">
+        <div class="caraous-title">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <span>Non-Profit Organization</span>
+                    <h1>Small Effort <br> Make Big Change </h1>
+                    <h3>We are non-profit NGO & Charity Organization</h3>
+                    <a class="btn btn-lg btn-primary site-btn" href="#">Learn More</a>
+                </div>
+
+            </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <img src="https://wtop.com/wp-content/uploads/2017/10/postal.jpg" style="width:100%" class="img-responsive">
+      <div class="container">
+        <div class="caraous-title">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <span>Non-Profit Organization</span>
+                    <h1>Small Effort <br> Make Big Change </h1>
+                    <h3>We are non-profit NGO & Charity Organization</h3>
+                    <a class="btn btn-lg btn-primary site-btn" href="#">Learn More</a>
+                </div>
+            </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Controls -->
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="icon-prev"></span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="icon-next"></span>
+  </a>
+</div>
+            <!--/Slider-->
+{% endblock %}

@@ -15,4 +15,5 @@ urlpatterns = [
     path('login_user/', views.login_user, name='login_user'),
     path('create_package/', views.create_package, name='create_package'),
     path('<int:package_id>/delete_package/', views.delete_package, name='delete_package'),
+    path('index/profile/', views.profile, name='profile'),
 ]

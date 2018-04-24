@@ -9,8 +9,8 @@
         <div class="col-sm-12">
             <h3>{{ user.username }}'s Package</h3>
         </div>
-        {% if albums %}
-            {% for album in albums %}
+        {% if packages %}
+            {% for package in packages %}
                 <div class="col-sm-4 col-lg-2">
                     <div class="thumbnail">
                         <a href="{% url 'package:detail' package.id %}">
@@ -22,7 +22,7 @@
 
                             <!-- View Details -->
                             <a href="{% url 'package:detail' package.id %}" class="btn btn-primary btn-sm" role="button">View Details</a>
-
+<!--<a href="url 'package:detail' package.id %}" class="btn btn-primary btn-sm" role="button">View Details</a>-->
 
 
                         </div>

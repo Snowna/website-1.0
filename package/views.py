@@ -10,7 +10,7 @@ from django.http import JsonResponse
 def index_v(request):
     # connect to the database
     if not request.user.is_authenticated:
-        return render(request, 'package/login_v.html')
+        return render(request, 'package/index_v.html')
     else:
         packages = Package.objects.filter(user=request.user)
         query = request.GET.get("q")
@@ -78,7 +78,7 @@ class UserFormView(View):
             user.save()
 
             # returns User objects if credentials are correct
-            user = authenticate(username=username,password=password)
+            user = authenticate(username=username, password=password)
 
             if user is not None:
 
@@ -111,7 +111,7 @@ def logout_user(request):
     context = {
         "form": form,
     }
-    return render(request, 'package/login.html', context)
+    return render(request, 'package/index_v.html', context)
 
 
 def register(request):
@@ -132,6 +132,14 @@ def register(request):
         "form": form,
     }
     return render(request, 'package/register.html', context)
+
+
+def profile(request):
+    if not request.user.is_authenticated:
+        return render(request, 'package/login.html')
+    else:
+        packages = Package.objects.filter(user=request.user)
+        return render(request, 'package/profile.html', {'packages': packages})
 
 
 def create_package(request):

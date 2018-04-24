@@ -3,30 +3,45 @@
 {% block albums_active %}active{% endblock %}
 
 {% block body %}
-<div class="container-fluid songs-container">
+    <div class="center-block">
+        <div class="row">
+            <div class="container-fluid songs-container">
+                <!-- Left package Info -->
+                <div style="position: absolute; left: 50%;">
+                    <div style="position: relative; left: -50%;">
+                        <div class="col-sm-3 col-md-10">
 
-    <div class="row">
+                            <div class="panel panel-default">
 
-        <!-- Left package Info -->
-        <div class="col-sm-4 col-md-3">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <a href="{% url 'package:detail' package.id %}">
-                        {% if package.tracking_num %}
+                                <div class="panel-body">
 
-                            {% else %}
-                                <h3>No image to display</h3>
-                            {% endif %}
-                    </a>
-                    <h1>{{ package.tracking_num }} <small>{{ package.package_type }}</small></h1>
-                    <h2>{{ package.package_company }}</h2>
+                                    <a href="{% url 'package:detail' package.id %}">
+                                        {% if package.tracking_num %}
+
+                                        {% else %}
+                                            <h3>No image to display</h3>
+                                        {% endif %}
+                                    </a>
+                                    <h1>{{ package.tracking_num }}
+                                        <small>{{ package.package_type }}</small>
+                                    </h1>
+                                    <h2>{{ package.package_company }}</h2>
+                                    <div class="fb-like" data-href="#"
+                                         data-layout="standard" data-action="like" data-size="small"
+                                         data-show-faces="true" data-share="true"></div>
+                                    <div class="fb-comments"
+                                         data-href="{{ request.build_absolute_uri }}"
+                                         data-numposts="5"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-        <!-- Right Song Info -->
+    <!-- Right Song Info -->
 
 
 {% endblock %}

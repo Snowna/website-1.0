@@ -16,3 +16,4 @@ class PackageForm(forms.ModelForm):
     class Meta:
         model = Package
         fields = ['tracking_num', 'package_type', 'package_company']
+
